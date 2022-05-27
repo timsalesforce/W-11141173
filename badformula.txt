@@ -1,0 +1,144 @@
+SUBSTR(CASE WHEN 
+((TRUNC(TO_DATE(t.val65) + (-8/24.0))>=(TRUNC(SYSDATE + (-8/24.0))-TRUNC(7))) 
+AND (NOT (TO_DATE(t.val65) IS NULL))) 
+THEN '_HL_ENCODED_' ||
+ NVL('https://portal.nutanix.com/portal_redirect?accountid=' || 
+ CASE WHEN t.val0 = '000000000000000' THEN NULL ELSE t.val0 END||
+ CASE WHEN LENGTH(CASE WHEN t.val0 = '000000000000000' THEN NULL ELSE t.val0 END) = 15 
+ THEN SUBSTR('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456',
+ DECODE(BITAND(ASCII(SUBSTR(CASE WHEN t.val0 = '000000000000000' 
+ THEN NULL 
+ ELSE t.val0 END,5,1)),96),64,16,0)+
+ DECODE(BITAND(ASCII(SUBSTR(CASE WHEN t.val0 = '000000000000000' 
+ THEN NULL 
+ ELSE t.val0 END,4,1)),96),64,8,0)+
+ DECODE(BITAND(ASCII(SUBSTR(CASE WHEN t.val0 = '000000000000000' 
+ THEN NULL 
+ ELSE t.val0 END,3,1)),96),64,4,0)+
+ DECODE(BITAND(ASCII(SUBSTR(CASE WHEN t.val0 = '000000000000000' 
+ THEN NULL 
+ ELSE t.val0 END,2,1)),96),64,2,0)+
+ DECODE(BITAND(ASCII(SUBSTR(CASE WHEN t.val0 = '000000000000000' 
+ THEN NULL 
+ ELSE t.val0 END,1,1)),96),64,1,0)+1,1)||
+ SUBSTR('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456',DECODE(BITAND(ASCII(SUBSTR(CASE WHEN t.val0 = '000000000000000' 
+ THEN NULL 
+ ELSE t.val0 END,10,1)),96),64,16,0)+
+ DECODE(BITAND(ASCII(SUBSTR(CASE WHEN t.val0 = '000000000000000' 
+ THEN NULL 
+ ELSE t.val0 END,9,1)),96),64,8,0)+
+ DECODE(BITAND(ASCII(SUBSTR(CASE WHEN t.val0 = '000000000000000' 
+ THEN NULL 
+ ELSE t.val0 END,8,1)),96),64,4,0)+
+ DECODE(BITAND(ASCII(SUBSTR(CASE WHEN t.val0 = '000000000000000' 
+ THEN NULL 
+ ELSE t.val0 END,7,1)),96),64,2,0)+
+ DECODE(BITAND(ASCII(SUBSTR(CASE WHEN t.val0 = '000000000000000' 
+ THEN NULL 
+ ELSE t.val0 END,6,1)),96),64,1,0)+1,1)||
+ SUBSTR('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456',DECODE(BITAND(ASCII(SUBSTR(CASE WHEN t.val0 = '000000000000000' 
+ THEN NULL 
+ ELSE t.val0 END,15,1)),96),64,16,0)+
+ DECODE(BITAND(ASCII(SUBSTR(CASE WHEN t.val0 = '000000000000000' T
+ HEN NULL ELSE t.val0 END,14,1)),96),64,8,0)+
+ DECODE(BITAND(ASCII(SUBSTR(CASE WHEN t.val0 = '000000000000000' 
+ THEN NULL 
+ ELSE t.val0 END,13,1)),96),64,4,0)+
+ DECODE(BITAND(ASCII(SUBSTR(CASE WHEN t.val0 = '000000000000000' 
+ THEN NULL ELSE t.val0 END,12,1)),96),64,2,0)+
+ DECODE(BITAND(ASCII(SUBSTR(CASE WHEN t.val0 = '000000000000000' 
+ THEN NULL 
+ ELSE t.val0 END,11,1)),96),64,1,0)+1,1) ELSE NULL END || 
+ '&page=%2Fpage%2Fassets%2Fcluster%2Fsummary%3Forigin%3Dsfdc_redirect%26cluster_uuid%3D' || 
+ t.val111 || 
+ '%26cluster_name%3D' || 
+ t.val40 || 
+ '2%26timelineDate%3D' || 
+ (TO_CHAR(DATE '2022-5-18', 'YYYY-MM-DD')), ' ') || 
+ '_HL_' || 
+ NVL('Please click here', ' ') || 
+ '_HL_' || NVL('NEW', ' ') || 
+ '_HL_' 
+ ELSE 'PulseHD not available' END, 0, 1300) "Hardware_Timeline__c",
+ 	CASE WHEN ((((NOT (t.name IS NULL)) AND 
+     (TRUNC(TO_DATE(t.val65) + (-8/24.0))>=(TRUNC(SYSDATE + (-8/24.0))-TRUNC(7))))) AND 
+     (NOT REGEXP_LIKE(REGEXP_REPLACE(SUBSTR(t.val71, GREATEST((NVL(INSTR(t.val71, '.'), 0)+1), 1), 
+     GREATEST(((NVL(INSTR(REGEXP_SUBSTR(t.val71,'.{0,'||
+     NVL((NVL(LENGTH(t.val71),0)-NVL(INSTR(t.val71, '.'), 0)),0)||
+     '}$',1,1,'n'), '.'), 0)-1)+NVL(INSTR(t.val71, '.'), 0)), 0)),'[0-9]+','0'),'^[+-]?(0|0\.|\.0|0\.0)([Ee][+-]?0)?$') OR 
+     ((TO_NUMBER(SUBSTR(t.val71, GREATEST((NVL(INSTR(t.val71, '.'), 0)+1), 1), 
+     GREATEST(((NVL(INSTR(REGEXP_SUBSTR(t.val71,'.{0,'||
+     NVL((NVL(LENGTH(t.val71),0)-NVL(INSTR(t.val71, '.'), 0)),0)||
+     '}$',1,1,'n'), '.'), 0)-1)+NVL(INSTR(t.val71, '.'), 0)), 0)))>=7) AND 
+     (NOT REGEXP_LIKE(REGEXP_REPLACE(SUBSTR(t.val71, 1, GREATEST(1, 0)),'[0-9]+','0'),'^[+-]?(0|0\.|\.0|0\.0)([Ee][+-]?0)?$'))) OR 
+     (NOT(((TO_NUMBER(SUBSTR(t.val71, GREATEST((NVL(INSTR(t.val71, '.'), 0)+1), 1), 
+     GREATEST(((NVL(INSTR(REGEXP_SUBSTR(t.val71,'.{0,'||
+     NVL((NVL(LENGTH(t.val71),0)-NVL(INSTR(t.val71, '.'), 0)),0)||
+     '}$',1,1,'n'), '.'), 0)-1)+NVL(INSTR(t.val71, '.'), 0)), 0)))>=7) AND 
+     (TO_NUMBER(SUBSTR(t.val71, 1, GREATEST(1, 0)))>=3))) AND 
+     (NOT REGEXP_LIKE(REGEXP_REPLACE(SUBSTR(t.val71, 1, GREATEST(1, 0)),'[0-9]+','0'),'^[+-]?(0|0\.|\.0|0\.0)([Ee][+-]?0)?$'))))) 
+     THEN NULL 
+     ELSE SUBSTR(CASE WHEN ((NOT (t.name IS NULL)) AND 
+     (TRUNC(TO_DATE(t.val65) + (-8/24.0))>=(TRUNC(SYSDATE + (-8/24.0))-TRUNC(7)))) 
+     THEN CASE WHEN (((TO_NUMBER(SUBSTR(t.val71, GREATEST((NVL(INSTR(t.val71, '.'), 0)+1), 1), 
+     GREATEST(((NVL(INSTR(REGEXP_SUBSTR(t.val71,'.{0,'||
+     NVL((NVL(LENGTH(t.val71),0)-NVL(INSTR(t.val71, '.'), 0)),0)||
+     '}$',1,1,'n'), '.'), 0)-1)+NVL(INSTR(t.val71, '.'), 0)), 0)))>=7) AND 
+     (TO_NUMBER(SUBSTR(t.val71, 1, GREATEST(1, 0)))>=3)) OR 
+     (((TO_NUMBER(SUBSTR(t.val71, 1, GREATEST(1, 0)))>=4) AND 
+     (NVL(t.val71, '3.7.0'||'x')<>'3.7.0')) AND 
+     (NVL(t.val71, '3.7.0.0'||'x')<>'3.7.0.0'))) THEN 
+     '_HL_ENCODED_' || 
+     NVL('https://portal.nutanix.com/portal_redirect?accountid=' || 
+     CASE WHEN t.val0 = '000000000000000' THEN NULL ELSE t.val0 END||
+     CASE WHEN LENGTH(CASE WHEN t.val0 = '000000000000000' THEN NULL ELSE t.val0 END) = 15 
+     THEN SUBSTR('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456',
+     DECODE(BITAND(ASCII(SUBSTR(CASE WHEN t.val0 = '000000000000000' 
+     THEN NULL 
+     ELSE t.val0 END,5,1)),96),64,16,0)+
+     DECODE(BITAND(ASCII(SUBSTR(CASE WHEN t.val0 = '000000000000000' 
+     THEN NULL 
+     ELSE t.val0 END,4,1)),96),64,8,0)+
+     DECODE(BITAND(ASCII(SUBSTR(CASE WHEN t.val0 = '000000000000000' 
+     THEN NULL 
+     ELSE t.val0 END,3,1)),96),64,4,0)+DECODE(BITAND(ASCII(SUBSTR(CASE WHEN t.val0 = '000000000000000' 
+     THEN NULL 
+     ELSE t.val0 END,2,1)),96),64,2,0)+DECODE(BITAND(ASCII(SUBSTR(CASE WHEN t.val0 = '000000000000000' 
+     THEN NULL 
+     ELSE t.val0 END,1,1)),96),64,1,0)+1,1)||SUBSTR('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456',
+     DECODE(BITAND(ASCII(SUBSTR(CASE WHEN t.val0 = '000000000000000' 
+     THEN NULL 
+     ELSE t.val0 END,10,1)),96),64,16,0)+DECODE(BITAND(ASCII(SUBSTR(CASE WHEN t.val0 = '000000000000000' 
+     THEN NULL 
+     ELSE t.val0 END,9,1)),96),64,8,0)+DECODE(BITAND(ASCII(SUBSTR(CASE WHEN t.val0 = '000000000000000' 
+     THEN NULL 
+     ELSE t.val0 END,8,1)),96),64,4,0)+DECODE(BITAND(ASCII(SUBSTR(CASE WHEN t.val0 = '000000000000000' 
+     THEN NULL 
+     ELSE t.val0 END,7,1)),96),64,2,0)+DECODE(BITAND(ASCII(SUBSTR(CASE WHEN t.val0 = '000000000000000' 
+     THEN NULL 
+     ELSE t.val0 END,6,1)),96),64,1,0)+1,1)||
+     SUBSTR('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456',
+     DECODE(BITAND(ASCII(SUBSTR(CASE WHEN t.val0 = '000000000000000' 
+     THEN NULL 
+     ELSE t.val0 END,15,1)),96),64,16,0)+
+     DECODE(BITAND(ASCII(SUBSTR(CASE WHEN t.val0 = '000000000000000' 
+     THEN NULL 
+     ELSE t.val0 END,14,1)),96),64,8,0)+
+     DECODE(BITAND(ASCII(SUBSTR(CASE WHEN t.val0 = '000000000000000' 
+     THEN NULL 
+     ELSE t.val0 END,13,1)),96),64,4,0)+
+     DECODE(BITAND(ASCII(SUBSTR(CASE WHEN t.val0 = '000000000000000' 
+     THEN NULL 
+     ELSE t.val0 END,12,1)),96),64,2,0)+
+     DECODE(BITAND(ASCII(SUBSTR(CASE WHEN t.val0 = '000000000000000' 
+     THEN NULL 
+     ELSE t.val0 END,11,1)),96),64,1,0)+1,1) ELSE NULL END || '&page=/page/assets/cluster/diagnostics?cluster_uuid=' || 
+     t.name || 
+     '&cluster_name=' || 
+     t.val40, ' ') || 
+     '_HL_' || 
+     NVL('Please click here', ' ') || 
+     '_HL_' || 
+     '_blank' || 
+     '_HL_' ELSE 'NCC Version unsupported' END 
+     ELSE 'Pulse4k not available' END, 0, 1300) END "Insights_Remote_Collection__c",

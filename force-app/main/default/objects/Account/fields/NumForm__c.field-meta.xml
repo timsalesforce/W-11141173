@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NumForm__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(VALUE(MID(
+  Name,
+  FIND(&quot;.&quot;, Name) + 1,
+  FIND(&quot;.&quot;, RIGHT(Name, LEN(Name) - FIND(&quot;.&quot;, Name)))-1+FIND(&quot;.&quot;, Name)
+)) &gt;=7 &amp;&amp; (VALUE(LEFT(Name,1))&gt;=3), 0, 1)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>NumForm</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>
